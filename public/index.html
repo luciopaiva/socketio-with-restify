@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>socket.io with Restify</title>
+
+    <style>
+        .hidden { display: none; }
+        span { background-color: yellow; }
+    </style>
+</head>
+<body>
+
+<p id="success-message" class="hidden">If you see this, your socket.io + restify experiment worked :-)</p>
+
+<p>This is some random value fetched via REST call to restify: <span id="random-number">?</span></p>
+
+<p>Server time: <span id="server-time">?</span></p>
+
+<p>Online clients: <span id="clients-online">?</span></p>
+
+<script src="/socket.io.js"></script>
+<script>
+    const socket = io();
+
+    const successMessageElement = document.getElementById("success-message");
+    const serverTimeElement = document.getElementById("server-time");
+    const clientsOnlineElement = document.getElementById("clients-online");
+
+    socket.on("connect", () => {
+        successMessageElement.classList.remove("hidden");
+        console.info("Connected!")
+    });
+
+    socket.on("server-time", severTime => serverTimeElement.innerText = severTime);
+    socket.on("clients-online", clientsOnline => clientsOnlineElement.innerText = clientsOnline);
+
+    fetch("/random").then(async response => {
+        const json = JSON.parse(await response.text());
+        document.getElementById("random-number").innerText = json.value;
+    });
+</script>
+
+</body>
+</html>

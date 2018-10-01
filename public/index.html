@@ -21,6 +21,12 @@
 
 <script src="/socket.io.js"></script>
 <script>
+    /*
+     * Sample client-side socket.io script. It connects to the restify server and receives periodic messages from
+     * socket.io server.
+     *
+     * It also shows how to call a Restify endpoint and retrieve sample JSON data.
+     */
     const socket = io();
 
     const successMessageElement = document.getElementById("success-message");

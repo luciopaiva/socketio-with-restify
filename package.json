@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "restify": "^7.2.1",
+    "restify": "^8.4.0",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1"
   }

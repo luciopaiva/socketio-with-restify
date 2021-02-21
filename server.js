@@ -19,7 +19,7 @@ const
     server = restify.createServer(),
     io = socketio.listen(server.server);
 
-let clientsOnline = new Set();
+const clientsOnline = new Set();
 
 // sample api that generates random numbers
 server.get("/random", (req, res) => res.send({ value: (Math.random() * 1000).toFixed(0)} ));
